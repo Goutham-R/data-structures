@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <algorithm>
 #define in(x) std::cin >> x;
 #define out(x) std::cout << x << std::endl;
 class BST
@@ -12,6 +13,7 @@ public:
     BST(int);
     BST *insert0(BST *, int);
     void inorder(BST *);
+    int height_tree(BST *);
 };
 BST::BST() : data(0), left(NULL), right(NULL){};
 BST::BST(int value)
@@ -43,4 +45,13 @@ void BST::inorder(BST *root)
     inorder(root->left);
     out(root->data);
     inorder(root->right);
+}
+int BST::height_tree(BST *root)
+{
+    if (root == NULL)
+        return 0;
+    int lheight = height_tree(root->left);
+    int rheight = height_tree(root->right);
+    int height = max(lheight, rheight);
+    return height + 1;
 }

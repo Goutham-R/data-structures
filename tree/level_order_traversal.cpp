@@ -1,20 +1,18 @@
 #inclide < bits / stdc++.h>
 #include "defn.h"
 using namespace std;
-int max_level = 0;
-void left_view(BST *root, int level)
+void level_order(BST *root, int level)
 {
     if (root == NULL)
         return;
-    if (level > max_level)
+    if (level == 1)
+        out(root->data);
+    else
     {
-        out(root->data)
-            max_level = level;
+        level_order(root->left, level - 1);
+        level_order(root->right, level - 1);
     }
-    left_view(root->left, level + 1);
-    left_view(root->right, level + 1);
 }
-
 void main()
 {
     BST b, *root = NULL;
@@ -25,5 +23,8 @@ void main()
     b.insert0(root, 70);
     b.insert0(root, 60);
     b.insert0(root, 80);
-    left_view(root, max_level, 1)
+    for (int i = 0; i < b.height_tree(root))
+    {
+        level_order(root, i);
+    }
 }
