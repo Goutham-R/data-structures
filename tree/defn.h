@@ -5,10 +5,10 @@
 #define out(x) std::cout << x << std::endl;
 class BST
 {
-    int data;
-    BST *left, *right;
 
 public:
+    int data;
+    BST *left, *right;
     BST();
     BST(int);
     BST *insert0(BST *, int);
@@ -52,6 +52,6 @@ int BST::height_tree(BST *root)
         return 0;
     int lheight = height_tree(root->left);
     int rheight = height_tree(root->right);
-    int height = max(lheight, rheight);
+    int height = std::max(lheight, rheight);
     return height + 1;
 }
